@@ -1,11 +1,11 @@
 import {
   GraphQLList,
   GraphQLObjectType,
-  GraphQLString,
+  GraphQLID,
   GraphQLSchema,
 } from 'graphql';
 
-import ClassType from './ClassType';
+import {ClassType} from './types';
 
 const BASE_URL = 'http://dnd5eapi.co/api';
 
@@ -14,12 +14,15 @@ function fetchResponseByURL(relativeURL) {
 }
 
 function fetchClasses() {
-  console.log('fetch classes')
   return fetchResponseByURL('/classes/').then(json => json.results);
 }
 
-function fetchClassByURL(relativeURL) {
-  return fetchResponseByURL(relativeURL).then(json => json.results);
+// function fetchClassByURL(relativeURL) {
+//   return fetchResponseByURL(relativeURL).then(json => json.results);
+// }
+
+function fetchClassById(classID) {
+  return fetchResponseByURL(`/classes/${classID}`).then(json => json);
 }
 
 const QueryType = new GraphQLObjectType({
@@ -33,9 +36,9 @@ const QueryType = new GraphQLObjectType({
     class: {
       type: ClassType,
       args: {
-        id: { type: GraphQLString },
+        id: { type: GraphQLID },
       },
-      resolve: (root, args) => fetchClassByURL(`/classes/${ args.id }/`),
+      resolve: (root, args) => fetchClassById(args.id),
     },
   }),
 });

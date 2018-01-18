@@ -1,4 +1,7 @@
-GraphQL wrapper over a DnD rest api
+## Dungeons and Dragons GraphQL Wrapper
+
+![Status: Not Ready for use (still in development)](https://img.shields.io/badge/status-not%20ready%20for%20use-red.svg)
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 

@@ -1,9 +1,18 @@
 type Class {
   id: Int!
   name: String!
+  hit_die: Int!
+  subclasses: [Subclass]
 }
 
 type Query {
   classes: [Class]!
   class(id: ID!): Class
+}
+
+type Subclass {
+  id: Int!
+  name: String!
+  subclass_flavor: String!
+  description: String!
 }

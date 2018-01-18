@@ -4,7 +4,8 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import ClassQuery from  './ClassQuery';
+import PageClasses from  './PageClasses';
+import PageClass from  './PageClass';
 import logo from './logo.svg';
 import './App.css';
 
@@ -19,15 +20,13 @@ class App extends Component {
         <Router>
           <div>
             <div>
-              <p className="App-intro">
-                To get started, edit <code>src/App.js</code> and save to reload.
-              </p>
               <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/classes">Classes</Link></li>
               </ul>
             </div>
-            <Route exact path="/classes" component={ClassQuery} />
+            <Route exact path="/classes" component={PageClasses} />
+            <Route exact path="/class/:slug" render={({ match })=> (<PageClass slug={match.params.slug}/>)}/>
           </div>
         </Router>
       </div>
